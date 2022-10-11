@@ -1,6 +1,6 @@
-import type { Knex } from "knex";
+require('dotenv').config()
 
-const config: { [key: string]: Knex.Config } = {
+module.exports = {
   development: {
     client: "pg",
     connection: {
@@ -18,7 +18,4 @@ const config: { [key: string]: Knex.Config } = {
       directory: './src/migrations'
     }
   }
-
 };
-
-module.exports = config;
