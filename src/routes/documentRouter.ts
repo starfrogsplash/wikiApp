@@ -1,6 +1,6 @@
 require('dotenv').config('../.env')
 import { Router } from "express";
-import { fetchDocuments, fetchAllRevisions, fetchLatest, findLatest, findOldestRecord, findRevision} from '../controllers/documentControllers'
+import { fetchDocuments, fetchAllRevisions, fetchLatest, findLatest, findOldestRecord, findRevision, insertRecord, updateRecord} from '../controllers/documentControllers'
 
 const documentRouter = Router()
 
@@ -67,6 +67,38 @@ documentRouter.get('/documents/:title/:timeStamp', async (req, res) => {
         req.log.error(error)
         res.status(400).json('retreive failed')
     }
+})
+
+documentRouter.post('/documents/:title', async (req, res) => {
+    const { title } = req.params
+    const { content } = req.body
+
+    if(content.length === 0){
+       return res.status(400).json('content cannot be empty!')
+    }
+
+    const existingRecords = await fetchLatest(title)
+
+    if (existingRecords.length > 0) {
+        try {
+            const updated = await updateRecord(title, content, existingRecords)
+            res.status(200).json(updated)
+        } catch (error) {
+            req.log.error(error)
+            res.status(400).json('update failed')
+        }
+
+    } else {
+        try {
+            const record = await insertRecord(title, content)
+            res.status(200).json(record)
+
+        } catch (error) {
+            req.log.error(error)
+            res.status(400).json('insert failed')
+        }
+    }
+
 })
 
 export {

@@ -57,6 +57,25 @@ describe('documents', () => {
         expect(res.status).toEqual(404)
       })
 
+      it('POST /documents/:title => should insert new wiki entry of `Geoffry`', async () => {
+        const { body: document, status } = await request(app)
+          .post(`/documents/Geoffry`)
+          .send({content: 'this is a new entry'})
+
+        expect(document[0].revision).toEqual(1)
+        expect(document[0].title).toEqual('Geoffry')
+        expect(status).toEqual(200)
+      })
+
+      it('POST /documents/:title => should return 400 as content cannot be empty', async () => {
+        const res = await request(app)
+          .post(`/documents/Geoffry`)
+          .send({content: ''})
+
+          expect(res.text).toEqual("\"content cannot be empty!\"")
+          expect(res.status).toEqual(400)
+      })
+
 
     })
   })
