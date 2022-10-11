@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  db:
+    image: postgres
+    container_name: postgres_main
+    hostname: db
+    environment:
+      POSTGRES_PASSWORD: dbPass
+      POSTGRES_USER: dbUser
+      POSTGRES_DB: docker-db
+      POSTGRES_HOST: postgresHost
+    volumes:
+      - pgdata:/pgdata
+    ports:
+      - "5432:5432"
+    networks:
+      - main
+  db_test:
+    image: postgres
+    container_name: postgres_test
+    hostname: dbTest
+    environment:
+      POSTGRES_PASSWORD: dbTestPass
+      POSTGRES_USER: dbTestUser
+      POSTGRES_DB: dbTestUser
+      POSTGRES_HOST: postgresTestHost
+    volumes:
+      - pgTestdata:/pgTestdata
+    ports:
+      - "5400:5432"
+    networks:
+      - main
+volumes:
+  pgdata:
+  pgTestdata:
+networks:
+  main:

@@ -1,0 +1,35 @@
+{
+  "name": "wikiapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development nodemon ./index.ts | npx pino-pretty -i time",
+    "test": "NODE_ENV=test jest",
+    "compile": "tsc",
+    "createMigration": "knex migrate:make",
+    "migrateUp": "knex migrate:up",
+    "migrateDown": "knex migrate:down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/jest": "^29.1.2",
+    "@types/supertest": "^2.0.12",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jest": "^29.1.2",
+    "knex": "^2.3.0",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "pino-pretty": "^9.1.1",
+    "sqlite3": "^5.1.2",
+    "supertest": "^6.3.0",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1"
+  }
+}
