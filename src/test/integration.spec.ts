@@ -22,6 +22,13 @@ describe('documents', () => {
         expect(status).toEqual(200)
       })
 
+      it('GET /documents/:title => should return 2 entries of `game of thrones and its revisions`', async () => {
+        const { body: documents, status } = await request(app).get(`/documents/A Game of Thrones`)
+        expect(documents.length).toEqual(2)
+        expect(documents[0].title).toEqual('A Game of Thrones')
+        expect(status).toEqual(200)
+      })
+
 
     })
   })
