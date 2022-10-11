@@ -11,6 +11,10 @@
     "migrateUp": "knex migrate:up",
     "migrateDown": "knex migrate:down"
   },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
