@@ -52,7 +52,7 @@ npm start
 ```
 
 ###
-to see the Swagger docs go to this endpoint
+to see Swagger docs go to this endpoint
 ###
 ```
 http://localhost:3000/api-docs
