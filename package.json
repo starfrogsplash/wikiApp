@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon ./index.ts | npx pino-pretty -i time",
+    "start": "NODE_ENV=development nodemon ./src/index.ts | npx pino-pretty -i time",
     "test": "NODE_ENV=test jest",
     "compile": "tsc",
     "createMigration": "knex migrate:make",
