@@ -4,6 +4,9 @@ A wiki app api which has one to many relationship model (documents and its revis
 TypeScript, jest, knex, postgres, Docker-compose
 
 
+![Screenshot 2022-10-12 at 15 56 16](https://user-images.githubusercontent.com/22579826/196004291-ed157c4d-e748-48cd-91d3-f5adad3aad7b.png)
+
+
 ## Installation
 
 You will need
