@@ -38,11 +38,12 @@ services:
       DB_HOST: db
       DB_USER: dbUser
       DB_PASS: dbPass
-      DB_TEST_HOST: dbTest
+      DB_TEST_HOST: localhost
       TEST_USER: dbTestUser
       TEST_PASS: dbTestPass
       NODE_ENV: development
       DEV: docker-db
+    env_file: .env
     volumes:
       - ./:/app
       - /app/node_modules
