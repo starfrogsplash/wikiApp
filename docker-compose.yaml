@@ -13,7 +13,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - main
+      - wiki
   dbTest:
     image: postgres
     container_name: dbTest
@@ -24,7 +24,7 @@ services:
     ports:
       - "5400:5432"
     networks:
-      - main
+      - wiki
   node_app:
     container_name: node_app
     hostname: node_app
@@ -50,8 +50,8 @@ services:
     ports:
       - 3000:3000
     networks:
-      - main
+      - wiki
 volumes:
   pgdata:
 networks:
-  main:
+  wiki:
