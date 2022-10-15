@@ -9,7 +9,7 @@ const createTestDatabase = async (database: any) => {
   const knex = Knex({
     client: 'pg',
     connection: {
-        host: process.env.DB_HOST,
+        host: process.env.DB_TEST_HOST,
         database: undefined,
         port: 5400,
         password: process.env.TEST_PASS,
@@ -40,7 +40,7 @@ async function migrateTestDatabase(database: any) {
   const knex = Knex({
     client: 'pg',
     connection: {
-        host: process.env.DB_HOST,
+        host: process.env.DB_TEST_HOST,
         database,
         port: 5400,
         password: process.env.TEST_PASS,

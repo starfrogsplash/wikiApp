@@ -22,10 +22,11 @@ let knex: knexNs
 })
 
 export const knexConfig = (database: any): knexNs => {
+  console.log('process.env.DB_TEST_HOST===', process.env.DB_TEST_HOST)
      knex = Knex({
         client: 'pg',
         connection: {
-            host: process.env.DB_HOST,
+            host: process.env.DB_TEST_HOST,
             database: database,
             port: 5400,
             password: process.env.TEST_PASS,

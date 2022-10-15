@@ -17,42 +17,31 @@ You will need
 1. you will need to create an .env file at the root of the this project, with these environment variables
 
 ```
-DB_HOST=localhost
+DB_HOST=db
 DB_USER=dbUser
 DB_PASS=dbPass
+DB_TEST_HOST=localhost
 TEST_USER=dbTestUser
 TEST_PASS=dbTestPass
 NODE_ENV=development
 DEV=docker-db
 ```
 
-2. To spin up docker databases
+2. To spin up databases and the app
+
 ```
 docker-compose up
 ```
 
-
-
-3. Install dependencies for the app
+###
+3. To run tests locally
+###
 ```
-npm install
-```
-
-
-4. initialize the schema
-```
-npm migrateUp
+npm run test
 ```
 
 ###
-5. to start the app
-###
-```
-npm start
-```
-
-###
-to see Swagger docs go to this endpoint
+To see Swagger docs go to this endpoint
 ###
 ```
 http://localhost:3000/api-docs

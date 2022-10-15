@@ -8,30 +8,49 @@ services:
       POSTGRES_PASSWORD: dbPass
       POSTGRES_USER: dbUser
       POSTGRES_DB: docker-db
-      POSTGRES_HOST: postgresHost
     volumes:
       - pgdata:/pgdata
     ports:
       - "5432:5432"
     networks:
       - main
-  db_test:
+  dbTest:
     image: postgres
-    container_name: postgres_test
+    container_name: dbTest
     hostname: dbTest
     environment:
       POSTGRES_PASSWORD: dbTestPass
       POSTGRES_USER: dbTestUser
-      POSTGRES_DB: dbTestUser
-      POSTGRES_HOST: postgresTestHost
-    volumes:
-      - pgTestdata:/pgTestdata
     ports:
       - "5400:5432"
     networks:
       - main
+  node_app:
+    container_name: node_app
+    hostname: node_app
+    build: .
+    depends_on:
+      - db
+      - db_test
+    restart: on-failure
+    command: bash -c "npm run migrateUp && npm run start"
+    environment:
+      DB_HOST: db
+      DB_USER: dbUser
+      DB_PASS: dbPass
+      DB_TEST_HOST: dbTest
+      TEST_USER: dbTestUser
+      TEST_PASS: dbTestPass
+      NODE_ENV: development
+      DEV: docker-db
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    networks:
+      - main
 volumes:
   pgdata:
-  pgTestdata:
 networks:
   main:
